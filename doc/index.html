@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Topographic map</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./css/utils.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <!-- JQuery -->
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <!-- Config -->
+    <script src="./js/config.js"></script>
+    <!-- String data messages -->
+    <script src="./js/messages.js"></script>
+    <!-- My own functions -->
+    <script src="./js/utils.js"></script>
+    <!-- controller for the app -->
+    <script src="./js/index.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nav-bar">
+                <input type="checkbox" class="button" value="Menu">
+                <ul class="menu">
+                    <li><a href="link to repo">Topographic map</a></li>
+                    <li>
+                        <a href="./html/doc.html">Documentación &#65516</a>
+                        <ul class="hidden-menu">
+                            <li><a href="./html/doc.html#description">Descripción</a></li>
+                            <li><a href="./html/doc.html#contributors">Integrantes</a></li>
+                            <li><a href="./html/doc.html#comments">Comentarios</a></li>
+                            <li><a href="./html/doc.html#views">Vistas</a></li>
+                            <li><a href="./html/doc.html#resources">Recursos</a></li>
+                            <li><a href="./html/doc.html#tools">Herramientas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="map-panel">
+                <div class="draw-panel">
+                    <div class="home">
+                        <div class="kitchen"></div>
+                        <div class="room1"></div>
+                        <div class="corridor"></div>
+                        <div class="bathroom1"></div>
+                        <div class="room2"></div>
+                        <div class="bathroom2"></div>
+                        <div class="sittingroom">
+                            <div class="plants"></div>
+                            <div class="library"></div>
+                        </div>
+                        <div class="room3"></div>
+                    </div>
+                </div>
+                <div class="info-panel">
+                    <div class="information">
+                    </div>
+                    <div class="resizer" id='left'></div>
+                </div>
+            </div>
+            <div class="setting-panel">
+                <div class="resizer" id='top'></div>
+            </div>
+        </div>
+    </div>
+</body>

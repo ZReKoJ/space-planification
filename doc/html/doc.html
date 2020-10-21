@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Topographic map</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/utils.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/doc.css" />
+    <!-- My own functions -->
+    <script src="../js/utils.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nav-bar">
+                <input type="checkbox" class="button" value="Menu">
+                <ul class="menu">
+                    <li class="algorithms-links">
+                        <a href=" ../index.html">Topographic map</a>
+                        <ul class="hidden-menu">
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="./doc.html">Documentación &#65516</a>
+                        <ul class="hidden-menu">
+                            <li><a href="./doc.html#description">Descripción</a></li>
+                            <li><a href="./doc.html#contributors">Integrantes</a></li>
+                            <li><a href="./doc.html#comments">Comentarios</a></li>
+                            <li><a href="./doc.html#views">Vistas</a></li>
+                            <li><a href="./doc.html#resources">Recursos</a></li>
+                            <li><a href="./doc.html#tools">Herramientas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <h1 align="center">Algoritmo ID3</h1>
+            <p align="center"><a href="https://github.com/ZReKoJ/ID3-Algorithm">Repositorio github</a></p>
+            <h2 id="description" align="center">Descripción</h2>
+            <div class="list-group">
+                <p class="list-group-item">Se trata de una aplicación que simula un algoritmo ID3.</p>
+                <p class="list-group-item">El algoritmo está implementado de manera que por cada ejecución resuelve una
+                    tabla en concreta, y es la función en sí misma recursiva hasta que se resuelva todas sus ramas.</p>
+                <p class="list-group-item">Una vez ejecutado, se mostrará una línea encima de la tabla para comprobar
+                    casos de prueba.</p>
+            </div>
+            <h2 id="contributors" align="center">Integrantes</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Zihao Hong</li>
+            </ul>
+            <h2 id="comments" align="center">Comentarios</h2>
+            <div class="list-group">
+                <p class="list-group-item">La vista del programa consiste en 4 zonas: Cabecera, Plano, Iconos y
+                    Settings.</p>
+                <p class="list-group-item">Cabecera: Para la transición con otras páginas como la de documentación.</p>
+                <p class="list-group-item">Plano: Donde se dibuja el árbol.</p>
+                <p class="list-group-item">Tabla: Se encuentra los datos cargados.</p>
+                <p class="list-group-item">Cuadro de texto: Se encuentra las sentencias condicionales de la solución.
+                </p>
+                <p class="list-group-item">Settings: Para configuraciones.</p>
+                <p class="list-group-item">El botón de ejecutar es para inicializar la simulación.</p>
+                <p class="list-group-item">El botón subir cabeceras es para cargar los títulos de los atributos.</p>
+                <p class="list-group-item">El botón subir datos es para cargar los valores de los atributos.</p>
+                <p class="list-group-item">Para la organización de los textos se aceptan textos planos u otros
+                    extensiones como .csv.</p>
+                <p class="list-group-item">Si se usa Windows hay que dejar un Enter al final puesto que no se aceptan
+                    caracteres raros en el fichero, que causarían problemas al parsear.</p>
+                <p class="list-group-item">El input delimitador es para indicar que signo se usa para separar las
+                    palabras en los documentos cargados.</p>
+                <p class="list-group-item">El input decisión es para indicar qué atributo es la de decisión.</p>
+            </div>
+            <h2 id="views" align="center">Vistas</h2>
+            <div class="list-group">
+                <a target="_blank" target="_blank" id="program"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">Program</h4>
+                    </div>
+                    <div style="margin-top:20px">
+                        <p> Es la página para la ejecución</p>
+                    </div>
+                </a>
+                <a target="_blank" target="_blank" id="doc"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">Documentación</h4>
+                    </div>
+                    <div style="margin-top:20px">
+                        <p> Se trata de ésta página. </p>
+                    </div>
+                </a>
+            </div>
+            <h2 id="resources" align="center">Recursos</h2>
+            <div class="list-group">
+                <a target="_blank" href="http://fperucic.github.io/treant-js/"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Treant JS</h5>
+                        <small class="text-muted">Librería javascript para dibujar árboles</small>
+                    </div>
+                    <p class="mb-1">Es la librería que se usa en el proyecto para dibujar árboles.</p>
+                    <small class="text-muted">Click para redirigir a la página</small>
+                </a>
+                <a target="_blank" href="https://getbootstrap.com/"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Bootstrap</h5>
+                        <small class="text-muted">Librería de .css</small>
+                    </div>
+                    <p class="mb-1">Es la librería que se usa en el proyecto para la presentación de la documentación.
+                    </p>
+                    <small class="text-muted">Click para redirigir a la página</small>
+                </a>
+                <a target="_blank" href="https://code.jquery.com/jquery-3.1.1.min.js"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">JQuery</h5>
+                        <small class="text-muted">librería javascript para simplificar la aplicación de
+                            comportamientos</small>
+                    </div>
+                    <p class="mb-1">Se usa para simplificar.</p>
+                    <small class="text-muted">Click para redirigir a la página</small>
+                </a>
+            </div>
+            <h2 id="tools" align="center">Herramientas</h2>
+            <div class="list-group">
+                <a target="_blank" href="https://github.com/"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">GitHub</h5>
+                        <small class="text-muted">Repositorio de la aplicación</small>
+                    </div>
+                    <p class="mb-1">Lugar donde se guarda la aplicación y para el gestión del proyecto.</p>
+                    <small class="text-muted">Click para redirigir a la página</small>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>

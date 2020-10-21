@@ -1,0 +1,149 @@
+:root {
+    --kitchen-color:blue;
+    --room1-color: cyan;
+    --corridor-color: red;
+    --bathroom1-color: white;
+    --room2-color:orange;
+    --bathroom2-color: purple;
+    --sittingroom-color: gray;
+    --room3-color: black;
+    --library-color: turquoise;
+    --plants-color: green;
+    --img-width: 560;
+    --img-height: 560;
+    --wrapper-width: 500;
+    --wrapper-height: 500;
+}
+
+.home {
+    position: relative;
+    width: calc(1px * var(--wrapper-width));
+    min-width: calc(1px * var(--wrapper-width));
+    height: calc(1px * var(--wrapper-height));
+    min-height: calc(1px * var(--wrapper-height));
+    animation-name: grow;
+    animation-delay: 0s;
+    animation-duration: 0.1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.kitchen {
+    position: absolute;
+    top: calc(280px * var(--wrapper-height) / var(--img-height));
+    right: calc(480px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(200px * var(--wrapper-height) / var(--img-height));
+    left: calc(0px * var(--wrapper-width) / var(--img-width));
+    width: calc(80px * var(--wrapper-width) / var(--img-width));
+    height: calc(80px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--kitchen-color);
+    z-index: 50;
+}
+
+.room1 {
+    position: absolute;
+    top: calc(360px * var(--wrapper-height) / var(--img-height));
+    right: calc(400px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(120px * var(--wrapper-height) / var(--img-height));
+    left: calc(80px * var(--wrapper-width) / var(--img-width));
+    width: calc(80px * var(--wrapper-width) / var(--img-width));
+    height: calc(80px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--room1-color);
+    z-index: 50;
+}
+
+.corridor {
+    position: absolute;
+    top: calc(320px * var(--wrapper-height) / var(--img-height));
+    right: calc(280px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(200px * var(--wrapper-height) / var(--img-height));
+    left: calc(80px * var(--wrapper-width) / var(--img-width));
+    width: calc(200px * var(--wrapper-width) / var(--img-width));
+    height: calc(40px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--corridor-color);
+    z-index: 50;
+}
+
+.bathroom1 {
+    position: absolute;
+    top: calc(360px * var(--wrapper-height) / var(--img-height));
+    right: calc(340px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(0px * var(--wrapper-height) / var(--img-height));
+    left: calc(165px * var(--wrapper-width) / var(--img-width));
+    width: calc(55px * var(--wrapper-width) / var(--img-width));
+    height: calc(80px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--bathroom1-color);
+    z-index: 50;
+}
+
+.room2 {
+    position: absolute;
+    top: calc(120px * var(--wrapper-height) / var(--img-height));
+    right: calc(120px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(360px * var(--wrapper-height) / var(--img-height));
+    left: calc(360px * var(--wrapper-width) / var(--img-width));
+    width: calc(80px * var(--wrapper-width) / var(--img-width));
+    height: calc(100px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--room2-color);
+    z-index: 70;
+}
+
+.bathroom2 {
+    position: absolute;
+    top: calc(360px * var(--wrapper-height) / var(--img-height));
+    right: calc(0px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(140px * var(--wrapper-height) / var(--img-height));
+    left: calc(440px * var(--wrapper-width) / var(--img-width));
+    width: calc(120px * var(--wrapper-width) / var(--img-width));
+    height: calc(60px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--bathroom2-color);
+    z-index: 50;
+}
+
+.sittingroom {
+    position: absolute;
+    top: calc(120px * var(--wrapper-height) / var(--img-height));
+    right: calc(120px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(200px * var(--wrapper-height) / var(--img-height));
+    left: calc(280px * var(--wrapper-width) / var(--img-width));
+    width: calc(160px * var(--wrapper-width) / var(--img-width));
+    height: calc(240px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--sittingroom-color);
+    z-index: 50;
+}
+
+.plants {
+    position: absolute;
+    top: calc(0px * var(--wrapper-height) / var(--img-height));
+    right: calc(150px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(160px * var(--wrapper-height) / var(--img-height));
+    left: calc(0px * var(--wrapper-width) / var(--img-width));
+    width: calc(10px * var(--wrapper-width) / var(--img-width));
+    height: calc(80px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--plants-color);
+    z-index: 70;
+}
+
+.library {
+    position: absolute;
+    top: calc(230px * var(--wrapper-height) / var(--img-height));
+    right: calc(0px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(5px * var(--wrapper-height) / var(--img-height));
+    left: calc(40px * var(--wrapper-width) / var(--img-width));
+    width: calc(120px * var(--wrapper-width) / var(--img-width));
+    height: calc(5px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--library-color);
+    z-index: 70;
+}
+
+.room3 {
+    position: absolute;
+    top: calc(200px * var(--wrapper-height) / var(--img-height));
+    right: calc(0px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(200px * var(--wrapper-height) / var(--img-height));
+    left: calc(440px * var(--wrapper-width) / var(--img-width));
+    width: calc(120px * var(--wrapper-width) / var(--img-width));
+    height: calc(160px * var(--wrapper-height) / var(--img-height));
+    background-color: var(--room3-color);
+    z-index: 50;
+}
