@@ -6,8 +6,20 @@ $(() => {
     makeResizableDiv('.setting-panel');
     makeResizableDiv('.info-panel');
 
+    $(".space").hover(
+        function () {
+            $(".info-panel > .information > img").attr('src', CONFIG.IMAGES[$(this).attr('id')]);
+        },
+        function () {
+            $(".info-panel > .information > img").attr('src', '');
+        });
+
     infoMessages();
 });
+
+function showImage(id) {
+
+}
 
 function infoMessages() {
     let allInfoMessages = messages.info.uses.recursiveValues();

@@ -28,7 +28,7 @@
     animation-fill-mode: forwards;
 }
 
-.kitchen {
+#kitchen {
     position: absolute;
     top: calc(280px * var(--wrapper-height) / var(--img-height));
     right: calc(480px * var(--wrapper-width) / var(--img-width));
@@ -40,7 +40,7 @@
     z-index: 50;
 }
 
-.room1 {
+#room1 {
     position: absolute;
     top: calc(360px * var(--wrapper-height) / var(--img-height));
     right: calc(400px * var(--wrapper-width) / var(--img-width));
@@ -52,7 +52,7 @@
     z-index: 50;
 }
 
-.corridor {
+#corridor {
     position: absolute;
     top: calc(320px * var(--wrapper-height) / var(--img-height));
     right: calc(280px * var(--wrapper-width) / var(--img-width));
@@ -64,7 +64,7 @@
     z-index: 50;
 }
 
-.bathroom1 {
+#bathroom1 {
     position: absolute;
     top: calc(360px * var(--wrapper-height) / var(--img-height));
     right: calc(340px * var(--wrapper-width) / var(--img-width));
@@ -76,7 +76,7 @@
     z-index: 50;
 }
 
-.room2 {
+#room2 {
     position: absolute;
     top: calc(120px * var(--wrapper-height) / var(--img-height));
     right: calc(120px * var(--wrapper-width) / var(--img-width));
@@ -88,7 +88,7 @@
     z-index: 70;
 }
 
-.bathroom2 {
+#bathroom2 {
     position: absolute;
     top: calc(360px * var(--wrapper-height) / var(--img-height));
     right: calc(0px * var(--wrapper-width) / var(--img-width));
@@ -100,7 +100,7 @@
     z-index: 50;
 }
 
-.sittingroom {
+#sittingroom {
     position: absolute;
     top: calc(120px * var(--wrapper-height) / var(--img-height));
     right: calc(120px * var(--wrapper-width) / var(--img-width));
@@ -112,7 +112,7 @@
     z-index: 50;
 }
 
-.plants {
+#plants {
     position: absolute;
     top: calc(0px * var(--wrapper-height) / var(--img-height));
     right: calc(150px * var(--wrapper-width) / var(--img-width));
@@ -124,7 +124,7 @@
     z-index: 70;
 }
 
-.library {
+#library {
     position: absolute;
     top: calc(230px * var(--wrapper-height) / var(--img-height));
     right: calc(0px * var(--wrapper-width) / var(--img-width));
@@ -136,7 +136,7 @@
     z-index: 70;
 }
 
-.room3 {
+#room3 {
     position: absolute;
     top: calc(200px * var(--wrapper-height) / var(--img-height));
     right: calc(0px * var(--wrapper-width) / var(--img-width));
@@ -146,4 +146,8 @@
     height: calc(160px * var(--wrapper-height) / var(--img-height));
     background-color: var(--room3-color);
     z-index: 50;
+}
+
+.space:hover {
+    box-shadow: 0 0 10px black;
 }
