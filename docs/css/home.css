@@ -155,7 +155,7 @@
 }
 
 .space > p {
-    font-size: 5px;
+    font-size: 10px;
 }
 
 .space:hover {
@@ -163,8 +163,8 @@
 }
 
 .node {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: red;
 }
