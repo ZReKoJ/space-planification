@@ -6,12 +6,14 @@ $(() => {
     makeResizableDiv('.setting-panel');
     makeResizableDiv('.info-panel');
 
+    $(".info-panel > .information > img").hide();
+
     $(".node").hover(
         function () {
-            $(".info-panel > .information > img").attr('src', CONFIG.IMAGES[$(this).attr('id')]);
+            $(".info-panel > .information > img").attr('src', CONFIG.IMAGES[$(this).attr('id')]).show();
         },
         function () {
-            $(".info-panel > .information > img").attr('src', '');
+            $(".info-panel > .information > img").attr('src', '').hide();
         });
 
     infoMessages();
