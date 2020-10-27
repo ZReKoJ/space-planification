@@ -9,6 +9,9 @@
     --room3-color: beige;
     --library-color: turquoise;
     --plants-color: green;
+    --arrow-color: indigo;
+    --node-color: red;
+    --node-hover-color: aqua;
     --img-width: 560;
     --img-height: 560;
     --wrapper-width: 500;
@@ -114,10 +117,10 @@
 
 .space#plants {
     position: absolute;
-    top: calc(0px * var(--wrapper-height) / var(--img-height));
-    right: calc(140px * var(--wrapper-width) / var(--img-width));
-    bottom: calc(160px * var(--wrapper-height) / var(--img-height));
-    left: calc(0px * var(--wrapper-width) / var(--img-width));
+    top: calc(120px * var(--wrapper-height) / var(--img-height));
+    right: calc(260px * var(--wrapper-width) / var(--img-width));
+    bottom: calc(360px * var(--wrapper-height) / var(--img-height));
+    left: calc(280px * var(--wrapper-width) / var(--img-width));
     width: calc(20px * var(--wrapper-width) / var(--img-width));
     height: calc(80px * var(--wrapper-height) / var(--img-height));
     background-color: var(--plants-color);
@@ -166,59 +169,129 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: red;
+    background-color: var(--node-color);
+    z-index: 100;
+}
+
+.node > p {
+    position: absolute;
+    top: calc(-5px * var(--wrapper-height) / var(--img-height));
+    right: calc(-5px * var(--wrapper-width) / var(--img-width));
+    z-index: 100;
+    font-size: 8px;
+    font-weight: bold;
 }
 
 .node:hover {
     transform: scale(1.2);
-    background-color: aqua;
+    background-color: var(--node-hover-color);
 }
 
 .node#sittingroom {
     position: absolute;
     bottom: calc(10px * var(--wrapper-height) / var(--img-height));
     left: calc(10px * var(--wrapper-width) / var(--img-width));
-    z-index: 80;
+    transform: rotate(181deg);
 }
 
 .node#room3 {
     position: absolute;
     bottom: calc(10px * var(--wrapper-height) / var(--img-height));
     left: calc(10px * var(--wrapper-width) / var(--img-width));
-    z-index: 80;
+    transform: rotate(180deg);
 }
 
 .node#room2 {
     position: absolute;
     bottom: calc(10px * var(--wrapper-height) / var(--img-height));
     left: calc(10px * var(--wrapper-width) / var(--img-width));
-    z-index: 80;
+    transform: rotate(60deg);
 }
 
 .node#plants {
     position: absolute;
     bottom: calc(-20px * var(--wrapper-height) / var(--img-height));
     right: calc(-50px * var(--wrapper-width) / var(--img-width));
-    z-index: 80;
+    transform: rotate(340deg);
 }
 
 .node#corridor {
     position: absolute;
     bottom: calc(15px * var(--wrapper-height) / var(--img-height));
     left: calc(25px * var(--wrapper-width) / var(--img-width));
-    z-index: 80;
+    transform: rotate(190deg);
 }
 
 .node#entrance {
     position: absolute;
     top: calc(-40px * var(--wrapper-height) / var(--img-height));
     left: calc(15px * var(--wrapper-width) / var(--img-width));
-    z-index: 80;
+    transform: rotate(127deg);
 }
 
 .node#kitchen {
     position: absolute;
     top: calc(45px * var(--wrapper-height) / var(--img-height));
     right: calc(10px * var(--wrapper-width) / var(--img-width));
+}
+
+.node#entrance > p {
+    transform: rotate(-127deg);
+}
+
+.node#corridor > p {
+    transform: rotate(-190deg);
+}
+
+.node#sittingroom > p {
+    transform: rotate(-181deg);
+}
+
+.node#room3 > p {
+    transform: rotate(-180deg);
+}
+
+.node#room2 > p {
+    transform: rotate(-60deg);
+}
+
+.node#plants > p {
+    transform: rotate(-340deg);
+}
+
+.line {
+    position: absolute;
+    height: 1px;
+    background-color: var(--arrow-color);
     z-index: 80;
+    top: 5px;
+    left: 5px;
+}
+
+.line#onetwo {
+    width: 50px;
+}
+
+.line#twothree {
+    width: 40px;
+}
+
+.line#threefour {
+    width: 165px;
+}
+
+.line#fourfive {
+    width: 143px;
+}
+
+.line#fivesix {
+    width: 145px;
+}
+
+.line#sixseven {
+    width: 30px;
+}
+
+.line:hover {
+    box-shadow: 0 0 5px white;
 }
