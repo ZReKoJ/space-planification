@@ -1,7 +1,7 @@
 :root {
     --kitchen-color:blue;
     --room1-color: cyan;
-    --corridor-color: red;
+    --corridor-color: pink;
     --bathroom1-color: white;
     --room2-color:orange;
     --bathroom2-color: purple;
@@ -28,7 +28,7 @@
     animation-fill-mode: forwards;
 }
 
-#kitchen {
+.space#kitchen {
     position: absolute;
     top: calc(280px * var(--wrapper-height) / var(--img-height));
     right: calc(480px * var(--wrapper-width) / var(--img-width));
@@ -40,7 +40,7 @@
     z-index: 50;
 }
 
-#room1 {
+.space#room1 {
     position: absolute;
     top: calc(360px * var(--wrapper-height) / var(--img-height));
     right: calc(400px * var(--wrapper-width) / var(--img-width));
@@ -52,7 +52,7 @@
     z-index: 50;
 }
 
-#corridor {
+.space#corridor {
     position: absolute;
     top: calc(320px * var(--wrapper-height) / var(--img-height));
     right: calc(280px * var(--wrapper-width) / var(--img-width));
@@ -64,7 +64,7 @@
     z-index: 50;
 }
 
-#bathroom1 {
+.space#bathroom1 {
     position: absolute;
     top: calc(360px * var(--wrapper-height) / var(--img-height));
     right: calc(340px * var(--wrapper-width) / var(--img-width));
@@ -76,7 +76,7 @@
     z-index: 50;
 }
 
-#room2 {
+.space#room2 {
     position: absolute;
     top: calc(120px * var(--wrapper-height) / var(--img-height));
     right: calc(120px * var(--wrapper-width) / var(--img-width));
@@ -88,7 +88,7 @@
     z-index: 70;
 }
 
-#bathroom2 {
+.space#bathroom2 {
     position: absolute;
     top: calc(360px * var(--wrapper-height) / var(--img-height));
     right: calc(0px * var(--wrapper-width) / var(--img-width));
@@ -100,7 +100,7 @@
     z-index: 50;
 }
 
-#sittingroom {
+.space#sittingroom {
     position: absolute;
     top: calc(120px * var(--wrapper-height) / var(--img-height));
     right: calc(120px * var(--wrapper-width) / var(--img-width));
@@ -112,7 +112,7 @@
     z-index: 50;
 }
 
-#plants {
+.space#plants {
     position: absolute;
     top: calc(0px * var(--wrapper-height) / var(--img-height));
     right: calc(150px * var(--wrapper-width) / var(--img-width));
@@ -124,7 +124,7 @@
     z-index: 70;
 }
 
-#library {
+.space#library {
     position: absolute;
     top: calc(230px * var(--wrapper-height) / var(--img-height));
     right: calc(0px * var(--wrapper-width) / var(--img-width));
@@ -136,7 +136,7 @@
     z-index: 70;
 }
 
-#room3 {
+.space#room3 {
     position: absolute;
     top: calc(200px * var(--wrapper-height) / var(--img-height));
     right: calc(0px * var(--wrapper-width) / var(--img-width));
@@ -148,6 +148,28 @@
     z-index: 50;
 }
 
+.space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space > p {
+    font-size: 5px;
+}
+
 .space:hover {
     box-shadow: 0 0 10px black;
+}
+
+.node {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.info-panel > .information > img {
+    width: 100%;
+    height: 100%;
 }

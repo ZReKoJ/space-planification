@@ -6,7 +6,7 @@ $(() => {
     makeResizableDiv('.setting-panel');
     makeResizableDiv('.info-panel');
 
-    $(".space").hover(
+    $(".node").hover(
         function () {
             $(".info-panel > .information > img").attr('src', CONFIG.IMAGES[$(this).attr('id')]);
         },
