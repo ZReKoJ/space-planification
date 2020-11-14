@@ -37,6 +37,7 @@ histogramas = cargar_histogramas(os.path.abspath(os.path.join(RUTA_BASE, 'hist')
 
 test_file = open(os.path.abspath(os.path.join(RUTA_BASE, 'output', 'test.csv')), 'r') 
 test_cases = test_file.readlines()
+test_cases.sort()
 test_file.close()
 
 aciertos = 0

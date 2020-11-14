@@ -3,21 +3,20 @@ from cv2 import cv2
 import random
 import os
 
+import logging
+import threading
+
 RUTA_BASE = os.path.abspath(os.path.join(os.getcwd(), '..'))
-X_TO_CSV = 60
+X_TO_CSV = 80
 
-f = open(os.path.abspath(os.path.join(RUTA_BASE, 'output', "test.csv")),'w')
-
-# Get list of landmarks
-landmarks = os.listdir(os.path.abspath(os.path.join(RUTA_BASE, 'resources')))
-for landmark in landmarks:
+def generateCSV(landmark, file, parse):
     # Full Images path for a specific landmark
     images = os.listdir(os.path.abspath(os.path.join(RUTA_BASE, 'resources', landmark)))
 
     # We do choose only X_TO_CSV first paths for the CSV the others are for test
     random.shuffle(images)
-    csv_images = images[:X_TO_CSV]
-    test_images = images[X_TO_CSV:]
+    csv_images = images[:parse]
+    test_images = images[parse:]
 
     histograms = np.empty((len(csv_images), 256))
     for i in range(0, len(csv_images)):
@@ -33,4 +32,19 @@ for landmark in landmarks:
     for t in test_images:
         f.write(landmark + ";" + str(os.path.abspath(os.path.join(RUTA_BASE, 'resources', landmark, t))) + '\n')
         
+f = open(os.path.abspath(os.path.join(RUTA_BASE, 'output', "test.csv")),'w')
+threads = list()
+
+# Get list of landmarks
+landmarks = os.listdir(os.path.abspath(os.path.join(RUTA_BASE, 'resources')))
+for landmark in landmarks:
+    # Open threads
+    x = threading.Thread(target=generateCSV, args=(landmark, f, X_TO_CSV))
+    threads.append(x)
+    x.start()
+    
+# Wait for all threads
+for index, thread in enumerate(threads):
+    thread.join()
+
 f.close()
