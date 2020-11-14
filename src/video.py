@@ -35,6 +35,23 @@ def predecir_imagen(histograma_img, histogramas):
                 clase = key
     return clase, min_distance
 
+def esta_en_nodo(fotograma_actual, fotogramas_nodos):
+    for key in fotogramas_nodos.keys():
+        if fotograma_actual > fotogramas_nodos[key][0] and fotograma_actual < fotogramas_nodos[key][1]:
+            return key
+    return None
+
+segundos_nodos = {'1_Entrada' : [0, 3],
+                  '2_Cocina' : [14, 16],
+                  '3_Pasillo' : [21, 24],
+                  '4_Salon' : [30, 33],
+                  '5_Grande' : [43, 46],
+                  '6_Pequena' : [63, 65],
+                  '7_Plantas' : [69, 74]}
+fps = 50
+fotogramas_nodos = {}
+for key in segundos_nodos.keys():
+    fotogramas_nodos[key] = [segundos_nodos[key][0] * fps, segundos_nodos[key][1] * fps]
 
 # Inicialización
 histogramas = cargar_histogramas(RUTA_BASE)
@@ -51,9 +68,22 @@ last_captured = None
 w = 900
 
 contador_errores = 0
+contador_fotogramas = 0
+contador_correctos = 0
+contador_erroneos = 0
+# Contadores (tp, tn, fp, fn)
+contadores = {'1_Entrada' : [0, 0, 0, 0],
+                        '2_Cocina' : [0, 0, 0, 0],
+                        '3_Pasillo' : [0, 0, 0, 0],
+                        '4_Salon' : [0, 0, 0, 0],
+                        '5_Grande' : [0, 0, 0, 0],
+                        '6_Pequena' : [0, 0, 0, 0],
+                        '7_Plantas' : [0, 0, 0, 0]}
+
 try:
     while cap.isOpened():
         read_flag, frame = cap.read()
+        contador_fotogramas += 1
         if not read_flag:
             print(f"[{datetime.now().strftime('%Y%m%d%H%M%S%f')}] --> Error leyendo frame")
             contador_errores += 1
@@ -61,18 +91,28 @@ try:
                 break
         else:
             contador_errores = 0
+            nodo = esta_en_nodo(contador_fotogramas, fotogramas_nodos)
             if last_captured is None or (datetime.now() - last_captured).microseconds > (1000000 / FPS):
                 last_captured = datetime.now()
-
                 hist = crear_histograma_img(frame)
                 predict = predecir_imagen(hist, histogramas)
-                cv2.putText(frame, predict[0], (20, 40), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 0, 255))
+                for key in contadores.keys():
+                    if key != nodo and key != predict[0]:
+                        contadores[key][1] += 1
+                if nodo is not None:
+                    if nodo == predict[0]:
+                        contador_correctos += 1
+                        contadores[nodo][0] += 1
+                    else:
+                        contador_erroneos += 1
+                        contadores[nodo][3] += 1
+                        contadores[predict[0]][2] += 1
+                    cv2.putText(frame, f"{predict[0]} / {nodo}", (20, 40), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 0, 255))
                 out.write(frame)
                 img = cv2.resize(frame, (w, int(w * 1080 / 1920)))
                 cv2.imshow("Video", img)
                 if cv2.waitKey(25) & 0xFF == ord('q'):
                     break
-
                 print(f"[{datetime.now().strftime('%Y%m%d%H%M%S%f')}] --> {predict}")
 except Exception as e:
     print(print(f"[{datetime.now().strftime('%Y%m%d%H%M%S%f')}] --> Error grave durante la ejecucción"))
@@ -81,3 +121,24 @@ finally:
         cap.release()
         out.release()
         cv2.destroyAllWindows()
+
+print("Estadisticas por nodo")
+for nodo in contadores.keys():
+    print(f"Matriz de confusión para el nodo {nodo}")
+    print("         Predict")
+    print("         +  | -")
+    print("------------------")
+    print(f"va | + | {contadores[nodo][0]} | {contadores[nodo][3]}") # tp | fp
+    print("lu |--------------")
+    print(f"e  | - | {contadores[nodo][2]} | {contadores[nodo][1]}") # fn | tp
+
+    print(f"Accuracy: {(contadores[nodo][0] + contadores[nodo][1]) / (contadores[nodo][0] + contadores[nodo][1] + contadores[nodo][2] + contadores[nodo][3])}")
+    print(f"Specificity: {contadores[nodo][1] / (contadores[nodo][1] + contadores[nodo][3])}")
+    if contadores[nodo][0] + contadores[nodo][2] == 0:
+        print("Sensitivity: NaN")
+    else:
+        print(f"Sensitivity: {contadores[nodo][0] / (contadores[nodo][0] + contadores[nodo][2])}")
+
+print(f"Etiquetado correctamente: {contador_correctos}")
+print(f"Etiquetado incorrectamente: {contador_erroneos}")
+print(f"{contador_correctos / (contador_correctos + contador_erroneos) * 100} % de aciertos")

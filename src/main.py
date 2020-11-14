@@ -2,13 +2,13 @@ import numpy as np
 from cv2 import cv2
 import os
 
-RUTA_BASE = 'C:\\Users\\enolg\\PycharmProjects\\Robots2\\'
+RUTA_BASE = os.path.abspath(os.path.join(os.getcwd(), '..'))
 
 def cargar_histogramas(path):
     dict = {}
     for file in os.listdir(path):
         if file.endswith(".csv"):
-            dict[file[:-4]] = np.genfromtxt(path  + file, delimiter=' ')
+            dict[file[:-4]] = np.genfromtxt(os.path.abspath(os.path.join(path, file)), delimiter=' ')
     return dict
 
 def crear_histograma_img(path):
@@ -19,7 +19,6 @@ def crear_histograma_img(path):
     for i in range(256):
         norm[i] = hist[i][0] / (h * w)
     return norm
-
 
 def predecir_imagen(histograma_img, histogramas):
     min_distance = None
@@ -33,11 +32,21 @@ def predecir_imagen(histograma_img, histogramas):
                 clase = key
     return clase, min_distance
 
-
 # Inicialización
-histogramas = cargar_histogramas(RUTA_BASE)
+histogramas = cargar_histogramas(os.path.abspath(os.path.join(RUTA_BASE, 'hist')))
 
+test_file = open(os.path.abspath(os.path.join(RUTA_BASE, 'output', 'test.csv')), 'r') 
+test_cases = test_file.readlines()
+test_file.close()
 
-# Para cada imagen
-hist = crear_histograma_img(f'{RUTA_BASE}DSC01158.JPG')
-print(predecir_imagen(hist, histogramas))
+aciertos = 0
+
+for line in test_cases:
+    parsed = line.replace("\n", "").split(";")
+    hist = crear_histograma_img(parsed[1])
+    prediccion = predecir_imagen(hist, histogramas)
+    if prediccion[0] == parsed[0]:
+        aciertos += 1
+    print(parsed[1], prediccion, prediccion[0] == parsed[0])
+
+print(f"{aciertos / len(test_cases) * 100} % de aciertos")
