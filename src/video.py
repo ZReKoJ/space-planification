@@ -2,15 +2,17 @@ from datetime import datetime
 import cv2
 import numpy as np
 import os
+import traceback
 
-RUTA_BASE = 'C:\\Users\\enolg\\PycharmProjects\\Robots2\\'
+RUTA_BASE = os.path.abspath(os.path.join(os.getcwd(), '..'))
 FPS = 5
+DELTA = 0.03
 
 def cargar_histogramas(path):
     dict = {}
     for file in os.listdir(path):
         if file.endswith(".csv"):
-            dict[file[:-4]] = np.genfromtxt(path  + file, delimiter=' ')
+            dict[file[:-4]] = np.genfromtxt(os.path.abspath(os.path.join(path, file)), delimiter=' ')
     return dict
 
 def crear_histograma_img(img):
@@ -33,7 +35,9 @@ def predecir_imagen(histograma_img, histogramas):
             if min_distance is None or diff < min_distance:
                 min_distance = diff
                 clase = key
-    return clase, min_distance
+    if min_distance < DELTA:
+        return clase, min_distance
+    return "None", min_distance
 
 def esta_en_nodo(fotograma_actual, fotogramas_nodos):
     for key in fotogramas_nodos.keys():
@@ -44,25 +48,25 @@ def esta_en_nodo(fotograma_actual, fotogramas_nodos):
 segundos_nodos = {'1_Entrada' : [0, 3],
                   '2_Cocina' : [14, 16],
                   '3_Pasillo' : [21, 24],
-                  '4_Salon' : [30, 33],
-                  '5_Grande' : [43, 46],
-                  '6_Pequena' : [63, 65],
-                  '7_Plantas' : [69, 74]}
+                  '4_Salon' : [32, 35],
+                  '5_Grande' : [44, 47],
+                  '6_Pequena' : [59, 63],
+                  '7_Plantas' : [67, 74]}
 fps = 50
 fotogramas_nodos = {}
 for key in segundos_nodos.keys():
     fotogramas_nodos[key] = [segundos_nodos[key][0] * fps, segundos_nodos[key][1] * fps]
 
 # Inicialización
-histogramas = cargar_histogramas(RUTA_BASE)
+histogramas = cargar_histogramas(os.path.abspath(os.path.join(RUTA_BASE, 'hist')))
 
 # Abrir capturador en directo
 cap = cv2.VideoCapture(0)
 
 # Abrir capturador desde fichero de video grabado
 nombre_video = "C0002"
-cap = cv2.VideoCapture(f"{RUTA_BASE}{nombre_video}.MP4")
-out = cv2.VideoWriter(f'output_{nombre_video}.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (1920, 1080))
+cap = cv2.VideoCapture(os.path.abspath(os.path.join(RUTA_BASE, 'resources', 'videos', str(nombre_video) + '.MP4')))
+out = cv2.VideoWriter(os.path.abspath(os.path.join(RUTA_BASE, 'resources', 'videos', 'output_' + str(nombre_video) + '.avi')),cv2.VideoWriter_fourcc('M','J','P','G'), 10, (1920, 1080))
 
 last_captured = None
 w = 900
@@ -97,16 +101,17 @@ try:
                 hist = crear_histograma_img(frame)
                 predict = predecir_imagen(hist, histogramas)
                 for key in contadores.keys():
-                    if key != nodo and key != predict[0]:
+                    if predict[0] != "None" and key != nodo and key != predict[0]:
                         contadores[key][1] += 1
                 if nodo is not None:
-                    if nodo == predict[0]:
-                        contador_correctos += 1
-                        contadores[nodo][0] += 1
-                    else:
-                        contador_erroneos += 1
-                        contadores[nodo][3] += 1
-                        contadores[predict[0]][2] += 1
+                    if predict[0] != "None": 
+                        if nodo == predict[0]:
+                            contador_correctos += 1
+                            contadores[nodo][0] += 1
+                        else:
+                            contador_erroneos += 1
+                            contadores[nodo][3] += 1
+                            contadores[predict[0]][2] += 1
                     cv2.putText(frame, f"{predict[0]} / {nodo}", (20, 40), cv2.FONT_HERSHEY_TRIPLEX, 1, (0, 0, 255))
                 out.write(frame)
                 img = cv2.resize(frame, (w, int(w * 1080 / 1920)))
@@ -116,7 +121,7 @@ try:
                 print(f"[{datetime.now().strftime('%Y%m%d%H%M%S%f')}] --> {predict}")
 except Exception as e:
     print(print(f"[{datetime.now().strftime('%Y%m%d%H%M%S%f')}] --> Error grave durante la ejecucción"))
-    print(e)
+    traceback.print_exc()
 finally:
         cap.release()
         out.release()
