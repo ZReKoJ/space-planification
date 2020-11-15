@@ -261,6 +261,8 @@
 
 .line {
     position: absolute;
+    display: flex;
+    justify-content: center;
     height: 1px;
     background-color: var(--arrow-color);
     z-index: 80;
@@ -268,28 +270,56 @@
     left: 5px;
 }
 
+.line > p {
+    font-size: 8px;
+}
+
 .line#onetwo {
     width: 50px;
+}
+
+.line#onetwo > p {
+    transform: rotate(-127deg);
 }
 
 .line#twothree {
     width: 40px;
 }
 
+.line#twothree > p {
+    transform: rotate(-190deg);
+}
+
 .line#threefour {
     width: 165px;
+}
+
+.line#threefour > p {
+    transform: rotate(-181deg);
 }
 
 .line#fourfive {
     width: 143px;
 }
 
+.line#fourfive > p {
+    transform: rotate(-180deg);
+}
+
 .line#fivesix {
     width: 145px;
 }
 
+.line#fivesix > p {
+    transform: rotate(-60deg);
+}
+
 .line#sixseven {
     width: 30px;
+}
+
+.line#sixseven > p {
+    transform: rotate(-340deg);
 }
 
 .line:hover {
